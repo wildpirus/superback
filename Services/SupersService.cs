@@ -244,6 +244,7 @@ public class SupersService : ISupersService {
         if (exist == 0) {
             super.super_id = Guid.NewGuid();
             super.nombre = super.nombre.ToLowerInvariant();
+            super.img = super.img;
             super.relaciones = super.relaciones.ToLowerInvariant();
             super.origen = super.origen.ToLowerInvariant();
             await context.AddAsync(super);

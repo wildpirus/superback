@@ -38,6 +38,7 @@ public class SupersContext: DbContext{
             super.HasKey(p=>p.super_id);
             super.Property(p=> p.nombre).IsRequired();
             super.Property(p=> p.edad).IsRequired();
+            super.Property(p=> p.img).IsRequired();
             super.Property(p=> p.relaciones);
             super.Property(p=> p.origen);
 
