@@ -247,22 +247,22 @@ public class SupersService : ISupersService {
             super.img = super.img;
             super.relaciones = super.relaciones.ToLowerInvariant();
             super.origen = super.origen.ToLowerInvariant();
-            await context.AddAsync(super);
-            await context.SaveChangesAsync();
+            context.Add(super);
+            context.SaveChanges();
             if(tipo == "Heroe"){
                 Heroe heroe = new Heroe(){
                     heroe_id = Guid.NewGuid(),
                     super_id = super.super_id
                 };
-                await context.AddAsync(heroe);
-                await context.SaveChangesAsync();
+                context.Add(heroe);
+                context.SaveChanges();
             }else {
                 Villano villano = new Villano(){
                     villano_id = Guid.NewGuid(),
                     super_id = super.super_id
                 };
-                await context.AddAsync(villano);
-                await context.SaveChangesAsync();
+                context.Add(villano);
+                context.SaveChanges();
             }
         }
     }
@@ -275,7 +275,7 @@ public class SupersService : ISupersService {
             superActual.relaciones = super.relaciones.ToLowerInvariant();
             superActual.origen = super.origen.ToLowerInvariant();
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 
@@ -284,7 +284,7 @@ public class SupersService : ISupersService {
 
         if(superActual != null) {
             context.Remove(superActual);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }

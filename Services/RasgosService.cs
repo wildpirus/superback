@@ -25,8 +25,8 @@ public class RasgosService : IRasgosService{
         if (exist == 0) {
             rasgo.rasgo_id = Guid.NewGuid();
             rasgo.titulo = rasgo.titulo.ToLowerInvariant();
-            await context.AddAsync(rasgo);
-            await context.SaveChangesAsync();
+            context.Add(rasgo);
+            context.SaveChanges();
         }
     }
 
@@ -36,7 +36,7 @@ public class RasgosService : IRasgosService{
         if(rasgoActual != null) {
             rasgoActual.titulo = rasgo.titulo;
             rasgoActual.tipo_rasgo = rasgo.tipo_rasgo;
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 
@@ -45,7 +45,7 @@ public class RasgosService : IRasgosService{
 
         if(rasgoActual != null) {
             context.Remove(rasgoActual);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }

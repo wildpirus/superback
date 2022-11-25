@@ -18,8 +18,8 @@ public class PatrocinadoresService : IPatrocinadoresService {
         int exist = context.Patrocinadores.Where(p => p.nombre == patrocinador.nombre && p.heroe_id == patrocinador.heroe_id).Count();
         if (exist == 0) {
             patrocinador.patrocinador_id = Guid.NewGuid();
-            await context.AddAsync(patrocinador);
-            await context.SaveChangesAsync();
+            context.Add(patrocinador);
+            context.SaveChanges();
         }
     }
 
@@ -32,7 +32,7 @@ public class PatrocinadoresService : IPatrocinadoresService {
             patrocinadorActual.monto = patrocinador.monto;
             patrocinadorActual.origen_monto = patrocinador.origen_monto;
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 
@@ -41,7 +41,7 @@ public class PatrocinadoresService : IPatrocinadoresService {
 
         if(patrocinadorActual != null) {
             context.Remove(patrocinadorActual);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }

@@ -16,8 +16,8 @@ public class LuchasService : ILuchasService {
 
     public async Task Save(Lucha lucha) {
         lucha.lucha_id = Guid.NewGuid();
-        await context.AddAsync(lucha);
-        await context.SaveChangesAsync();
+        context.Add(lucha);
+        context.SaveChanges();
     }
 
     public async Task Update(Guid id, Lucha lucha) {
@@ -28,7 +28,7 @@ public class LuchasService : ILuchasService {
             luchaActual.villano_id = lucha.villano_id;
             luchaActual.ganaHeroe = lucha.ganaHeroe;
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 
@@ -37,7 +37,7 @@ public class LuchasService : ILuchasService {
 
         if(luchaActual != null) {
             context.Remove(luchaActual);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }

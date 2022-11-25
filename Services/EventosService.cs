@@ -35,8 +35,8 @@ public class EventosService : IEventosService {
         ).Count();
         if (exist == 0) {
             evento.evento_id = Guid.NewGuid(); 
-            await context.AddAsync(evento);
-            await context.SaveChangesAsync();
+            context.Add(evento);
+            context.SaveChanges();
         }
     }
 
@@ -51,7 +51,7 @@ public class EventosService : IEventosService {
             eventoActual.descripcion = evento.descripcion;
             eventoActual.lugar = evento.lugar;
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 
@@ -60,7 +60,7 @@ public class EventosService : IEventosService {
 
         if(eventoActual != null) {
             context.Remove(eventoActual);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }
