@@ -20,18 +20,20 @@ public class SupersContext: DbContext{
         
         List<Super> supersInit = new List<Super>();
         supersInit.Add(new Super() {
-            super_id = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"),
-            nombre = "Gamora",
-            edad = 22,
-            relaciones = "Hijo de thanos",
-            origen = "Titán"
+            super_id = Guid.Parse("7ab2c2b6-47b4-49f7-bed6-1d2935f6b0df"),
+            nombre = "Batman",
+            edad = 15,
+            relaciones = "Wayne",
+            origen = "Wayne",
+            img = "Ciudad Gotica"
         });
         supersInit.Add(new Super() {
-            super_id = Guid.Parse("fe2de405-c38e-4c90-ac52-da0549dfb4ef"),
-            nombre = "Thanos",
+            super_id = Guid.Parse("a1e8c6bd-0660-4dd2-a937-a99a069accb2"),
+            nombre = "Joker",
             edad = 40,
-            relaciones = "Hijo de eternos",
-            origen = "Titán"
+            relaciones = "Harley",
+            origen = "Ciudad Gotica",
+            img = "https://phantom-marca.unidadeditorial.es/503e7332d948be137b70bdc5ccaf07cc/resize/1320/f/jpg/assets/multimedia/imagenes/2022/09/12/16629958060797.jpg"
         });
         modelBuilder.Entity<Super>(super => {
             super.ToTable("super");
@@ -98,21 +100,27 @@ public class SupersContext: DbContext{
         });
 
         List<Heroe> heroeInit = new List<Heroe>();
-        heroeInit.Add(new Heroe() {});
+        heroeInit.Add(new Heroe() {
+            heroe_id = Guid.NewGuid(),
+            super_id = Guid.Parse("7ab2c2b6-47b4-49f7-bed6-1d2935f6b0df")
+        });
         modelBuilder.Entity<Heroe>(heroe => {
             heroe.ToTable("Heroe");
             heroe.HasKey(p=>p.heroe_id);
             heroe.HasOne<Super>(p => p.Super).WithOne(p => p.Heroe).HasForeignKey<Heroe>(p => p.super_id);
-            //evento.HasData(eventoInit);
+            heroe.HasData(heroeInit);
         });
 
         List<Villano> villanoInit = new List<Villano>();
-        villanoInit.Add(new Villano() {});
+        villanoInit.Add(new Villano() {
+            villano_id = Guid.NewGuid(),
+            super_id = Guid.Parse("a1e8c6bd-0660-4dd2-a937-a99a069accb2")
+        });
         modelBuilder.Entity<Villano>(villano => {
             villano.ToTable("Villano");
             villano.HasKey(p=>p.villano_id);
             villano.HasOne<Super>(p => p.Super).WithOne(p => p.Villano).HasForeignKey<Villano>(p => p.super_id);
-            //evento.HasData(eventoInit);
+            villano.HasData(villanoInit);
         });
     }
 
